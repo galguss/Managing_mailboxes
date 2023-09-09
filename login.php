@@ -1,5 +1,5 @@
 <?php
-session_start(); // Cookie poisoning מגן
+session_start(); // Cookie poisoning מגן מפני הרעלת עוגיה
 include "mySql_connection.php";
 $sql = new mysql_conn();
 $mySql = $sql->GetConn();
@@ -9,7 +9,7 @@ $mailboxes = new mailboxes($mySql);
 
 $gss = isset($_SESSION['gss'])? $_SESSION['gss'] : 0;
 if(isset($_GET['btnForm'])){
-    if($gss < 4 && $mailboxes->IsValid($_GET['password'])){ // prevent password guessing למנוע ניחוש סיסמה
+    if($gss < 4 && $mailboxes->IsValid($_GET['password'])){ // brute force למנוע ניחוש סיסמה
         $_SESSION['IsLogged'] = true;
         header("location:./ListMailBox.php");
     }else{
