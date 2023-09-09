@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if(!$_SESSION['IsLogged']){
+    header("location:./login.php");
+}
+
 include "mySql_connection.php";
 $sql = new mysql_conn();
 $mySql = $sql->GetConn();
