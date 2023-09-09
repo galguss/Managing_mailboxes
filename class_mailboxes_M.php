@@ -14,9 +14,17 @@ class mailboxes {
     }
 
     public function GetAllMailBoxes(){
-        $query = "SELECT * FROM mailboxes";
+        $query = "SELECT * FROM `mailboxes`";
         $result = mysqli_query($this->mysql, $query);
         return $result;
+    }
+    public function GetMailBox($id){
+        $query = "SELECT * FROM `mailboxes` ";
+        $query .= "WHERE id=$id;";
+
+        $result = mysqli_query($this->mysql, $query);
+        $row = mysqli_fetch_assoc($result);
+        return $row;
     }
 
    public function CreateMailBox($params){
@@ -39,10 +47,10 @@ class mailboxes {
 
         if($id >= 0){
             $query = "UPDATE `mailboxes` SET ";
-            $query .= "`name` = '$name'";
-            $query .= "`box_number` = '$mailBoxNum'";
-            $query .= "`phone_number` = '$phoneNumber'";
-            $query .= "WHERE id ='$id'";
+            $query .= "name = '$name' , ";
+            $query .= "box_number = $mailBoxNum , ";
+            $query .= "phone_number = $phoneNumber ";
+            $query .= "WHERE id =$id";
 
             $result = mysqli_query($this->mysql, $query);
         }

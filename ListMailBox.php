@@ -43,7 +43,7 @@ $data = $mailboxes->GetAllMailBoxes();
         </tr>
         <?php foreach ($data as $item) {?>
             <tr>
-                <td><a>Edit</a></td>
+                <td><a href="./EditMailBox.php?id=<?= $item['id']?>">Edit</a></td>
                 <td><?= $item['name']?></td>
                 <td><?= $item['box_number']?></td>
                 <td><?= $item['phone_number']?></td>
