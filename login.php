@@ -8,6 +8,16 @@ include "class_mailboxes_M.php";
 $mailboxes = new mailboxes($mySql);
 
 $gss = isset($_SESSION['gss'])? $_SESSION['gss'] : 0;
+if(isset($_GET['btnForm'])){
+    if($gss < 4 && $mailboxes->IsValid($_GET['password'])){ // prevent password guessing למנוע ניחוש סיסמה
+        $_SESSION['IsLogged'] = true;
+        header("location:./ListMailBox.php");
+    }else{
+        echo "Try again";
+        $gss++;
+    }
+    $_SESSION['gss'] = $gss;
+}
 
 ?>
 <!doctype html>
