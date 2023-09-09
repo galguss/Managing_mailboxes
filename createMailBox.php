@@ -1,10 +1,10 @@
 <?php
 include 'mySql_connection.php';
 $sql = new mysql_conn();
-$muSql = $sql->GetConn();
+$mySql = $sql->GetConn();
 
 include 'class_mailboxes_M.php';
-$mailboxes = new mailboxes($muSql);
+$mailboxes = new mailboxes($mySql);
 
 if(isset($_GET['btnForm'])){
     $mailboxes->CreateMailBox($_GET);

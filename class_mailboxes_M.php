@@ -13,15 +13,38 @@ class mailboxes {
         return $pass == $this->password ;
     }
 
+    public function GetAllMailBoxes(){
+        $query = "SELECT * FROM mailboxes";
+        $result = mysqli_query($this->mysql, $query);
+        return $result;
+    }
+
    public function CreateMailBox($params){
         $name = isset($params['name']) ? $params['name'] : '';
         $mailBoxNum = isset($params['box_number']) ? $params['box_number'] : '';
         $phoneNumber = isset($params['phone_number']) ? $params['phone_number'] : '';
 
 
-        $q = "INSERT INTO `mailboxes` ( `name`, `box_number`, `phone_number`) ";
-        $q .= " VALUES ( '$name', '$mailBoxNum', '$phoneNumber')";;
+        $query = "INSERT INTO `mailboxes` ( `name`, `box_number`, `phone_number`) ";
+        $query .= " VALUES ( '$name', '$mailBoxNum', '$phoneNumber')";;
 
-       $result = mysqli_query($this->mysql, $q);
+       $result = mysqli_query($this->mysql, $query);
+    }
+
+    public function EditMailBox($params){
+        $id = isset($params['id'])? $params['id'] : -1 ;
+        $name = isset($params['name']) ? $params['name'] : '';
+        $mailBoxNum = isset($params['box_number']) ? $params['box_number'] : '';
+        $phoneNumber = isset($params['phone_number']) ? $params['phone_number'] : '';
+
+        if($id >= 0){
+            $query = "UPDATE `mailboxes` SET ";
+            $query .= "`name` = '$name'";
+            $query .= "`box_number` = '$mailBoxNum'";
+            $query .= "`phone_number` = '$phoneNumber'";
+            $query .= "WHERE id ='$id'";
+
+            $result = mysqli_query($this->mysql, $query);
+        }
     }
 }
