@@ -47,7 +47,7 @@ $data = $mailboxes->GetAllMailBoxes();
                 <td><?= $item['name']?></td>
                 <td><?= $item['box_number']?></td>
                 <td><?= $item['phone_number']?></td>
-                <td><a>DELETE</a></td>
+                <td><a href="./DeleteMailBox.php?id=<?= $item['id']?>">Delete</a></td>
             </tr>
         <?php } ?>
     </table>

@@ -8,6 +8,7 @@ $mailboxes = new mailboxes($mySql);
 
 if(isset($_GET['btnForm'])){
     $mailboxes->CreateMailBox($_GET);
+    header("location:./ListMailBox.php");
 }
 
 ?>

@@ -45,7 +45,7 @@ class mailboxes {
         $mailBoxNum = isset($params['box_number']) ? $params['box_number'] : '';
         $phoneNumber = isset($params['phone_number']) ? $params['phone_number'] : '';
 
-        if($id >= 0){
+        if($id > 0){
             $query = "UPDATE `mailboxes` SET ";
             $query .= "name = '$name' , ";
             $query .= "box_number = $mailBoxNum , ";
@@ -54,5 +54,12 @@ class mailboxes {
 
             $result = mysqli_query($this->mysql, $query);
         }
+    }
+
+    public function DeleteMailbox($id){
+            $query = "DELETE FROM `mailboxes`";
+            $query .= "WHERE id = '$id' ";
+
+            $result = mysqli_query($this->mysql, $query);
     }
 }
