@@ -17,8 +17,10 @@ $mailBox = $mailboxes->GetMailBox($id);
 
 
 if(isset($_GET['btnForm'])) {
-    $mailboxes->EditMailBox($_GET);
-    header("location:./ListMailBox.php");
+    if(isset($_GET['token']) && ($_GET['token'] == $_SESSION['TOKEN'])){ // CSRF למניעת שליחת טפסים למקור חיצוני
+        $mailboxes->EditMailBox($_GET);
+        header("location:./ListMailBox.php");
+    }
 }
 
 ?>
@@ -48,6 +50,7 @@ if(isset($_GET['btnForm'])) {
 <body>
 <form action="">
     <input type="hidden" name="id" value="<?= $mailBox['id']?>" />
+    <input type="hidden" name="token" value="<?= $_SESSION['TOKEN']?>" />
     <input type="text" name="name" value="<?= $mailBox["name"]?>" placeholder="please Enter Name"/>
     <input type="number" name="box_number" value="<?= $mailBox["box_number"]?>" placeholder="please Enter box Number"/>
     <input type="number" name="phone_number" value="<?= $mailBox["phone_number"]?>" placeholder="please Enter phone Number"/>

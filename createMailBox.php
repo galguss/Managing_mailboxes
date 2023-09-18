@@ -13,8 +13,10 @@ include 'class_mailboxes_M.php';
 $mailboxes = new mailboxes($mySql);
 
 if(isset($_GET['btnForm'])){
-    $mailboxes->CreateMailBox($_GET);
-    header("location:./ListMailBox.php");
+    if(isset($_GET['token']) && ($_GET['token'] == $_SESSION['TOKEN'])){ // CSRF למניעת שליחת טפסים למקור חיצוני
+        $mailboxes->CreateMailBox($_GET);
+        header("location:./ListMailBox.php");
+    }
 }
 
 ?>
@@ -43,6 +45,7 @@ if(isset($_GET['btnForm'])){
 </head>
 <body>
     <form action="">
+        <input type="hidden" name="token" value="<?= $_SESSION['TOKEN']?>" />
         <input type="text" name="name" placeholder="please Enter Name"/>
         <input type="number" name="box_number" placeholder="please Enter box Number"/>
         <input type="number" name="phone_number" placeholder="please Enter phone Number"/>

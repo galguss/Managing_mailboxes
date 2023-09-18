@@ -50,9 +50,9 @@ $data = $mailboxes->GetAllMailBoxes();
         <?php foreach ($data as $item) {?>
             <tr>
                 <td><a href="./EditMailBox.php?id=<?= $item['id']?>">Edit</a></td>
-                <td><?= htmlspecialchars($item['name'])?></td> // stored XSS מגן מפני הזרקת סקריפט זדוני לבסיס נתונים
-                <td><?= htmlspecialchars($item['box_number'])?></td> // stored XSS
-                <td><?= htmlspecialchars($item['phone_number'])?></td> // stored XSS
+                <td><?= htmlspecialchars($item['name'])?></td>  <!--stored XSS מגן מפני הזרקת סקריפט זדוני לבסיס נתונים -->
+                <td><?= htmlspecialchars($item['box_number'])?></td> <!-- stored XSS  -->
+                <td><?= htmlspecialchars($item['phone_number'])?></td> <!-- stored XSS  -->
                 <td><a href="./DeleteMailBox.php?id=<?= $item['id']?>">Delete</a></td>
             </tr>
         <?php } ?>

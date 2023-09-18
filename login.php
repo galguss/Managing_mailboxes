@@ -11,6 +11,7 @@ $gss = isset($_SESSION['gss'])? $_SESSION['gss'] : 0;
 if(isset($_GET['btnForm'])){
     if($gss < 4 && $mailboxes->IsValid($_GET['password'])){ // brute force למנוע ניחוש סיסמה
         $_SESSION['IsLogged'] = true;
+        $_SESSION['TOKEN']= substr(md5(rand(100,999)),0,10); // CSRF מגן מפני
         header("location:./ListMailBox.php");
     }else{
         echo "Try again";
@@ -45,7 +46,7 @@ if(isset($_GET['btnForm'])){
 </head>
 <body>
 <form action="">
-    <input type="text" name="password" placeholder="Enter Password please"/>
+    <input type="password" name="password" placeholder="Enter Password please"/>
     <button value="1" name="btnForm">login</button>
 </form>
 
